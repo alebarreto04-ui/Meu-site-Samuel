@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automais | Oficina Mecânica Especializada</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Rajdhani -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F52BA',      /* Azul Esportivo Principal */
+                            blueDark: '#0A367C',  /* Azul Escuro para destaques */
+                            blueLight: '#EFF6FF', /* Fundo azul bem claro */
+                            red: '#E53E3E',       /* Vermelho Acento Esportivo */
+                            redHover: '#C53030',
+                            dark: '#1E293B',      /* Texto e contraste */
+                            grayBg: '#F8FAFC',    /* Fundo suave para seções */
+                            border: '#E2E8F0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Rajdhani', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15, 82, 186, 0.92) 0%, rgba(10, 54, 124, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-brand-red selection:text-white">
+
+    <!-- HEADER / NAVEGAÇÃO FIXA -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-border shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- LOGO AUTOMAIS -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="bg-brand-blue p-2.5 rounded-xl text-white transform group-hover:scale-105 transition-transform shadow-md shadow-brand-blue/20">
+                        <i data-lucide="wrench" class="w-6 h-6 text-brand-red"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center">
+                            <span class="font-heading font-extrabold text-2xl tracking-wider text-brand-blueDark uppercase leading-none">AUTO</span>
+                            <span class="font-heading font-extrabold text-2xl tracking-wider text-brand-red uppercase leading-none">MAIS</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-semibold tracking-widest uppercase mt-0.5">Centro Automotivo</span>
+                    </div>
+                </a>
+
+                <!-- MENU DESKTOP -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+                    <a href="#home" class="hover:text-brand-blue transition-colors">Início</a>
+                    <a href="#sobre" class="hover:text-brand-blue transition-colors">Sobre Nós</a>
+                    <a href="#servicos" class="hover:text-brand-blue transition-colors">Serviços</a>
+                    <a href="#orcamento" class="hover:text-brand-blue transition-colors">Simulador</a>
+                    <a href="#depoimentos" class="hover:text-brand-blue transition-colors">Depoimentos</a>
+                    <a href="#contato" class="hover:text-brand-blue transition-colors">Contato</a>
+                </nav>
+
+                <!-- BOTÃO DE AÇÃO RÁPIDA (DESKTOP) -->
+                <div class="hidden lg:flex items-center">
+                    <a href="https://wa.me/5500999999999?text=Olá!%20Vim%20pelo%20site%20da%20Automais%20e%20gostaria%20de%20agendar%20um%20serviço." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- BOTÃO MENU MOBILE -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-brand-blue p-2 rounded-lg focus:outline-none">
+                    <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- CONTAINER MENU MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-brand-border px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Início</a>
+            <a href="#sobre" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Sobre Nós</a>
+            <a href="#servicos" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Serviços</a>
+            <a href="#orcamento" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Simulador de Orçamento</a>
+            <a href="#depoimentos" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Depoimentos</a>
+            <a href="#contato" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-blueLight hover:text-brand-blue">Contato</a>
+            <a href="https://wa.me/5500999999999?text=Olá!%20Vim%20pelo%20site%20da%20Automais%20e%20gostaria%20de%20agendar%20um%20serviço." target="_blank" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-md">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                <span>Falar pelo WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- BANNER HERO -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                    <span>Tecnologia & Transparência Automotiva</span>
+                </div>
+                <h1 class="font-heading text-4xl sm:text-6xl font-extrabold uppercase tracking-tight leading-tight mb-6">
+                    Sua Oficina de Confiança com Padrão <span class="text-brand-red">Premium</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-100 mb-8 leading-relaxed font-normal">
+                    Na <strong class="font-semibold text-white">Automais</strong>, cuidamos do seu carro com diagnósticos computadorizados precisos, peças de alta qualidade e garantia em todos os serviços.
+                </p>
+
+                <!-- BOTOES DE AÇÃO -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/5500999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20revisão%20na%20Automais." target="_blank" class="bg-brand-red hover:bg-brand-redHover text-white px-8 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-3 shadow-lg transition-transform hover:-translate-y-0.5">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        <span>Agendar Avaliação</span>
+                    </a>
+                    <a href="#orcamento" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-3 backdrop-blur-md transition-colors">
+                        <i data-lucide="calculator" class="w-5 h-5 text-brand-red"></i>
+                        <span>Simular Orçamento</span>
+                    </a>
+                </div>
+
+                <!-- DIFERENCIAIS RÁPIDOS -->
+                <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/20">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold font-heading text-white">100%</div>
+                        <div class="text-xs sm:text-sm text-slate-200">Garantia de Serviço</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold font-heading text-white">12+</div>
+                        <div class="text-xs sm:text-sm text-slate-200">Anos de Tradição</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold font-heading text-white">Scanner</div>
+                        <div class="text-xs sm:text-sm text-slate-200">De Última Geração</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section id="sobre" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- GALERIA DE IMAGENS SOBRE -->
+                <div class="relative grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?q=80&w=800&auto=format&fit=crop" alt="Equipe Automais" class="rounded-2xl border-2 border-brand-border shadow-md w-full h-64 object-cover">
+                    <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=800&auto=format&fit=crop" alt="Diagnóstico Automotivo" class="rounded-2xl border-2 border-brand-border shadow-md w-full h-64 object-cover mt-8">
+                    
+                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white border border-brand-border p-4 rounded-2xl flex items-center gap-4 shadow-xl w-11/12">
+                        <div class="p-3 bg-brand-blueLight text-brand-blue rounded-xl">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-slate-800">Transparência Garantida</p>
+                            <p class="text-xs text-slate-500">Enviamos fotos e vídeos dos reparos necessários</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTEÚDO TEXTUAL -->
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="h-0.5 w-6 bg-brand-red"></span>
+                        <h2 class="text-brand-blue font-bold text-sm uppercase tracking-widest">Sobre a Automais</h2>
+                    </div>
+                    <h3 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-blueDark mb-6 uppercase">Sua Experiência em Manutenção Automotiva</h3>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        A <strong class="text-slate-800 font-semibold">Automais</strong> nasceu para mudar a relação de confiança entre motoristas e oficinas mecânicas. Trabalhamos com processos claros, relatórios digitais detalhados e equipamentos de última geração.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-8">
+                        Seja para uma revisão preventiva antes de cair na estrada ou para solucionar um problema complexo no motor, nossa equipe técnica é constantemente treinada para entregar máxima eficiência e pontualidade.
+                    </p>
+
+                    <!-- LISTA DE BENEFÍCIOS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-red shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-700 font-medium">Orçamentos prévios sem surpresas</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-red shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-700 font-medium">Peças originais ou homologadas</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-red shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-700 font-medium">Atendimento personalizado e ágil</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-red shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-700 font-medium">Ambiente limpo e organizado</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="py-20 bg-brand-grayBg border-y border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <span class="h-0.5 w-6 bg-brand-red"></span>
+                    <h2 class="text-brand-blue font-bold text-sm uppercase tracking-widest">Nossas Soluções</h2>
+                    <span class="h-0.5 w-6 bg-brand-red"></span>
+                </div>
+                <h3 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-blueDark uppercase">Serviços Especializados</h3>
+                <p class="text-slate-600 mt-3">Mantemos seu veículo seguro e rodando com alta performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- CARD SERVIÇO 1 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="sliders" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Revisão Preventiva</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Verificação completa de mais de 40 itens essenciais para evitar quebras inesperadas e viagens interrompidas.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- CARD SERVIÇO 2 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="disc" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Freios e Suspensão</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Troca de pastilhas, discos, fluido de freio, amortecedores e buchas com testes de segurança rigorosos.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- CARD SERVIÇO 3 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="cpu" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Diagnóstico Eletrônico</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Leitura avançada via scanner para mapear falhas de injeção, luzes acesas no painel e sensores.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- CARD SERVIÇO 4 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="droplet" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Troca de Óleo e Filtros</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Óleos sintéticos e semissintéticos específicos para cada motor, garantindo a lubrificação ideal e menor desgaste.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- CARD SERVIÇO 5 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="wind" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Ar Condicionado</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Higienização completa do sistema, troca do filtro de cabine e recarga de gás refrigerante.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- CARD SERVIÇO 6 -->
+                <div class="bg-white border border-brand-border p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue transition-all group">
+                    <div class="p-4 bg-brand-blueLight rounded-xl w-fit text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i data-lucide="repeat" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-brand-blueDark mb-3 uppercase">Troca de Correia Dentada</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Substituição preventiva do kit de correia e tensores para evitar danos graves ao motor.</p>
+                    <a href="#orcamento" class="text-brand-blue text-sm font-bold inline-flex items-center gap-1 group-hover:text-brand-red transition-colors">Simular Orçamento <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULADOR DE ORÇAMENTO -->
+    <section id="orcamento" class="py-20 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-grayBg border border-brand-border rounded-3xl p-6 sm:p-10 shadow-lg">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blueLight text-brand-blue text-xs font-bold uppercase mb-3">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        <span>Simulação Online</span>
+                    </div>
+                    <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-blueDark uppercase">Simulador de Orçamento Automais</h3>
+                    <p class="text-slate-600 text-sm mt-1">Escolha a categoria do seu veículo e selecione os serviços desejados.</p>
+                </div>
+
+                <form id="calculator-form" onsubmit="return false;" class="space-y-6">
+                    <!-- PASSO 1: SELEÇÃO DO VEÍCULO -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">1. Categoria do Veículo:</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="vehicle_type" value="hatch" class="peer hidden" checked onchange="calculateTotal()">
+                                <div class="p-4 rounded-xl border border-brand-border bg-white text-center peer-checked:border-brand-blue peer-checked:bg-brand-blueLight transition-all shadow-sm">
+                                    <i data-lucide="car" class="w-6 h-6 mx-auto mb-2 text-slate-500 peer-checked:text-brand-blue"></i>
+                                    <span class="block text-xs sm:text-sm font-bold text-slate-800">Compacto / Hatch</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="vehicle_type" value="sedan" class="peer hidden" onchange="calculateTotal()">
+                                <div class="p-4 rounded-xl border border-brand-border bg-white text-center peer-checked:border-brand-blue peer-checked:bg-brand-blueLight transition-all shadow-sm">
+                                    <i data-lucide="car" class="w-6 h-6 mx-auto mb-2 text-slate-500 peer-checked:text-brand-blue"></i>
+                                    <span class="block text-xs sm:text-sm font-bold text-slate-800">Sedan / SUV</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="vehicle_type" value="pickup" class="peer hidden" onchange="calculateTotal()">
+                                <div class="p-4 rounded-xl border border-brand-border bg-white text-center peer-checked:border-brand-blue peer-checked:bg-brand-blueLight transition-all shadow-sm">
+                                    <i data-lucide="truck" class="w-6 h-6 mx-auto mb-2 text-slate-500 peer-checked:text-brand-blue"></i>
+                                    <span class="block text-xs sm:text-sm font-bold text-slate-800">Picape / Utilitário</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- PASSO 2: SELEÇÃO DE SERVIÇOS -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">2. Selecione os Serviços Desejados:</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="180" data-sedan="230" data-pickup="290" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Troca de Óleo e Filtro</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="240" data-sedan="310" data-pickup="390" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Troca Pastilhas de Freio</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="190" data-sedan="250" data-pickup="320" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Diagnóstico Computadorizado</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="150" data-sedan="180" data-pickup="220" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Higienização Ar Condicionado</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="380" data-sedan="460" data-pickup="580" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Troca Kit Correia Dentada</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3.5 rounded-xl border border-brand-border bg-white cursor-pointer hover:border-brand-blue transition-colors shadow-sm">
+                                <input type="checkbox" data-hatch="350" data-sedan="420" data-pickup="520" class="service-checkbox w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-slate-300" onchange="calculateTotal()">
+                                <span class="text-sm font-medium text-slate-700">Revisão Geral Preventiva</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- EXIBIÇÃO DO TOTAL -->
+                    <div class="p-5 rounded-2xl bg-white border border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                        <div>
+                            <span class="text-xs text-slate-500 uppercase font-bold tracking-wider block">Valor Estimado:</span>
+                            <span class="text-xs text-slate-400">*Sujeito à verificação presencial do modelo/ano do carro.</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="total-price" class="text-3xl font-heading font-extrabold text-brand-red">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <!-- BOTÃO ENVIAR WHATSAPP -->
+                    <button type="button" onclick="sendToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 shadow-md hover:shadow-lg transition-all">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        <span>Enviar Pedido de Agendamento pelo WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="py-20 bg-brand-grayBg border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <span class="h-0.5 w-6 bg-brand-red"></span>
+                    <h2 class="text-brand-blue font-bold text-sm uppercase tracking-widest">Avaliações</h2>
+                    <span class="h-0.5 w-6 bg-brand-red"></span>
+                </div>
+                <h3 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-blueDark uppercase">O Que Dizem Nossos Clientes</h3>
+                <p class="text-slate-600 mt-3">Quem conhece a Automais recomenda pela transparência e rapidez.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- DEPOIMENTO 1 -->
+                <div class="bg-white border border-brand-border p-6 rounded-2xl shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">
+                            "Levei meu carro para troca da correia e revisão. Fiquei impressionado com a organização da oficina e a atenção dos mecânicos."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-brand-blue text-white font-bold flex items-center justify-center font-heading">
+                            MA
+                        </div>
+                        <div>
+                            <h5 class="text-slate-800 font-bold text-sm">Marcelo Alves</h5>
+                            <span class="text-xs text-slate-500">Cliente desde 2022</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 2 -->
+                <div class="bg-white border border-brand-border p-6 rounded-2xl shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">
+                            "Achei sensacional a transparência. Me mandaram foto das peças trocadas e explicaram exatamente o motivo de cada serviço."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-brand-red text-white font-bold flex items-center justify-center font-heading">
+                            FC
+                        </div>
+                        <div>
+                            <h5 class="text-slate-800 font-bold text-sm">Fernanda Costa</h5>
+                            <span class="text-xs text-slate-500">Cliente desde 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 3 -->
+                <div class="bg-white border border-brand-border p-6 rounded-2xl shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">
+                            "Serviço rápido e com preço justo. Resolveram um barulho na suspensão que duas outras oficinas não tinham achado."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-brand-blueDark text-white font-bold flex items-center justify-center font-heading">
+                            GS
+                        </div>
+                        <div>
+                            <h5 class="text-slate-800 font-bold text-sm">Gabriel Santos</h5>
+                            <span class="text-xs text-slate-500">Cliente desde 2021</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO E LOCALIZAÇÃO -->
+    <section id="contato" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- INFORMAÇÕES E MAPA -->
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="h-0.5 w-6 bg-brand-red"></span>
+                        <h2 class="text-brand-blue font-bold text-sm uppercase tracking-widest">Fale Conosco</h2>
+                    </div>
+                    <h3 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-blueDark mb-6 uppercase">Onde Estamos</h3>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-brand-blueLight text-brand-blue rounded-xl">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-slate-800 font-bold">Endereço</h5>
+                                <p class="text-slate-600 text-sm">Av. das Nações, 850 - Centro, Betim - MG</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-brand-blueLight text-brand-blue rounded-xl">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-slate-800 font-bold">Horário de Atendimento</h5>
+                                <p class="text-slate-600 text-sm">Segunda a Sexta: 08:00 às 18:00</p>
+                                <p class="text-slate-600 text-sm">Sábados: 08:00 às 12:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-brand-blueLight text-brand-blue rounded-xl">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-slate-800 font-bold">Telefone & WhatsApp</h5>
+                                <p class="text-slate-600 text-sm">(31) 99999-9999 / (31) 3333-4444</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MAPA INCORPORADO -->
+                    <div class="w-full h-60 bg-slate-100 rounded-2xl border border-brand-border overflow-hidden shadow-sm">
+                        <iframe 
+                            class="w-full h-full"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.111111111111!2d-44.19!3d-19.96!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDU3JzM2LjAiUyA0NMKwMTEnMjQuMCJX!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- FORMULÁRIO DE CONTATO -->
+                <div class="bg-brand-grayBg border border-brand-border p-8 rounded-3xl shadow-sm">
+                    <h4 class="font-heading text-2xl font-bold text-brand-blueDark mb-6 uppercase">Envie uma Mensagem</h4>
+                    
+                    <div id="form-alert" class="hidden mb-6 p-4 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-800 text-sm font-medium">
+                        Mensagem enviada com sucesso! Entraremos em contato em breve.
+                    </div>
+
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Seu Nome</label>
+                            <input type="text" required placeholder="Ex: João Silva" class="w-full bg-white border border-brand-border rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-brand-blue transition-colors">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">WhatsApp / Telefone</label>
+                                <input type="tel" required placeholder="(31) 99999-9999" class="w-full bg-white border border-brand-border rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-brand-blue transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Modelo do Veículo</label>
+                                <input type="text" placeholder="Ex: Gol 1.6 - 2020" class="w-full bg-white border border-brand-border rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-brand-blue transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mensagem ou Dúvida</label>
+                            <textarea rows="4" required placeholder="Como podemos ajudar você hoje?" class="w-full bg-white border border-brand-border rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-brand-blue transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            <span>Enviar Mensagem</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-blueDark text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-white p-2 rounded-xl text-brand-blue">
+                            <i data-lucide="wrench" class="w-5 h-5 text-brand-red"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="font-heading font-extrabold text-2xl tracking-wider text-white uppercase">AUTO</span>
+                            <span class="font-heading font-extrabold text-2xl tracking-wider text-brand-red uppercase">MAIS</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Sua oficina de referência em manutenção automotiva com agilidade, honestidade e tecnologia.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="font-bold uppercase text-xs tracking-wider mb-4 text-brand-red">Navegação</h5>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#home" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Serviços</a></li>
+                        <li><a href="#orcamento" class="hover:text-white transition-colors">Simulador</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold uppercase text-xs tracking-wider mb-4 text-brand-red">Serviços Principais</h5>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Revisão Preventiva</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Troca de Óleo</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Diagnóstico Computadorizado</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Freios e Suspensão</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold uppercase text-xs tracking-wider mb-4 text-brand-red">Redes Sociais</h5>
+                    <div class="flex gap-3">
+                        <a href="#" class="p-2.5 bg-white/10 rounded-xl hover:bg-brand-red transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="p-2.5 bg-white/10 rounded-xl hover:bg-brand-red transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="p-2.5 bg-white/10 rounded-xl hover:bg-brand-red transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Automais Centro Automotivo. Todos os direitos reservados.</p>
+                <p>Oficina Mecânica Especializada</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGICA JAVASCRIPT -->
+    <script>
+        // Inicializa os ícones
+        lucide.createIcons();
+
+        // Lógica do Menu Mobile
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Lógica do Simulador de Orçamento
+        function calculateTotal() {
+            const vehicleType = document.querySelector('input[name="vehicle_type"]:checked').value;
+            const checkboxes = document.querySelectorAll('.service-checkbox');
+            let total = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const price = parseFloat(cb.getAttribute(`data-${vehicleType}`)) || 0;
+                    total += price;
+                }
+            });
+
+            document.getElementById('total-price').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            return total;
+        }
+
+        function sendToWhatsApp() {
+            const total = calculateTotal();
+            const vehicleTypeInput = document.querySelector('input[name="vehicle_type"]:checked');
+            let vehicleTypeName = 'Compacto / Hatch';
+            if (vehicleTypeInput.value === 'sedan') vehicleTypeName = 'Sedan / SUV';
+            if (vehicleTypeInput.value === 'pickup') vehicleTypeName = 'Picape / Utilitário';
+
+            const checkboxes = document.querySelectorAll('.service-checkbox');
+            let selectedServices = [];
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const serviceName = cb.nextElementSibling.innerText;
+                    selectedServices.push(serviceName);
+                }
+            });
+
+            if (selectedServices.length === 0) {
+                alert("Por favor, selecione ao menos um serviço para enviar a simulação.");
+                return;
+            }
+
+            let message = `Olá, gostaria de agendar um serviço na Automais!%0A%0A`;
+            message += `*Categoria do Veículo:* ${vehicleTypeName}%0A`;
+            message += `*Serviços Selecionados:*%0A`;
+            selectedServices.forEach(s => {
+                message += `- ${s}%0A`;
+            });
+            message += `%0A*Estimativa Total:* R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            const phone = "5500999999999"; // Substitua pelo número real de WhatsApp da oficina
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        // Lógica de Envio do Formulário de Contato
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('form-alert');
+            alertBox.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
